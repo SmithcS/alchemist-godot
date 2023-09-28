@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://o5t6x5w6g14l"]
+
+[ext_resource type="Texture2D" uid="uid://buyepe6etwg46" path="res://16_mage.svg" id="1_ak0tj"]
+[ext_resource type="Script" path="res://player.gd" id="1_otlmp"]
+[ext_resource type="PackedScene" uid="uid://r1bc7cjl1xey" path="res://projectile.tscn" id="2_duy6y"]
+
+[sub_resource type="GDScript" id="GDScript_14hlb"]
+script/source = "extends Marker2D
+
+func _physics_process(delta):
+	pass
+"
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(6, 6)
+script = ExtResource("1_otlmp")
+projectile_scene = ExtResource("2_duy6y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ak0tj")
+
+[node name="ProjectileSpawn" type="Marker2D" parent="."]
+position = Vector2(9.5, 1.5)
+script = SubResource("GDScript_14hlb")

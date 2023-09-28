@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://r1bc7cjl1xey"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_adgk0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ba533"]
+radius = 26.0
+
+[node name="Projectile" type="Area2D"]
+scale = Vector2(6, 6)
+script = ExtResource("1_adgk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ba533")
