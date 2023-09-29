@@ -13,7 +13,7 @@ var ice_rock_texture = preload("res://16_ice_rock.svg")
 var elementSet = {}
 
 func _ready():
-	print(card_manager.deck.cards)
+	print(card_manager.deck.to_string())
 	
 func cast():
 	var projectile = projectile_scene.instantiate()
