@@ -4,6 +4,12 @@ var id: int
 var cost: int
 var name: String
 
+static var INVALID_CARD: Card = Card.new(
+	0,
+	master_card_list[0]["cost"],
+	master_card_list[0]["name"]
+)
+
 func _init(p_id: int, p_cost: int, p_name: String):
 	id = p_id
 	cost = p_cost
@@ -12,8 +18,7 @@ func _init(p_id: int, p_cost: int, p_name: String):
 func _to_string() -> String:
 	return "id: %s, cost: %s, name: %s" % [id, cost, name]
 	
-# TODO: Create real type to represetn card config
-# Validate card config
+# TODO: Create real type to represent card config
 static func by_id(id: int) -> Card:
 	var card_config = Card.master_card_list[id]
 	
@@ -34,8 +39,7 @@ static func by_id(id: int) -> Card:
 			)
 		_:
 			assert(false)
-			# TODO: you can't throw in godot... 
-			return _INVALID_CARD
+			return INVALID_CARD
 	
 class AttackCard extends Card:
 	var damage: int
@@ -47,7 +51,6 @@ class AttackCard extends Card:
 	func _to_string() -> String:
 		return super._to_string() + (", damage: %s" % damage)
 		
-	
 class DefenseCard extends Card:
 	var block: int
 	
@@ -59,13 +62,10 @@ class UtilityCard extends Card:
 	# No clue what this will do yet 
 	var data: String
 	
-static var _INVALID_CARD: Card = Card.new(
-	0,
-	master_card_list[0]["cost"],
-	master_card_list[0]["name"]
-)
-
-# TODO consider making this global, maybe
+# TODO consider making this global (autoload singleton)
+# TODO store in json file, load from that
+# TODO if stored, validate card config json
+#
 # Format <K, V>:
 # K - Unique ID for card
 # V - Card data
