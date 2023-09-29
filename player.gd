@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed = 400
 @export var projectile_scene : PackedScene
 
-var card_manager = CardManager.new()
+var card_manager = DeckManager.new()
 
 var rock_texture = preload("res://16_rock.svg")
 var icicle_texture = preload("res://16_icicle.svg")

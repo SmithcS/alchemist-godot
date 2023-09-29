@@ -6,8 +6,8 @@ var name: String
 
 static var INVALID_CARD: Card = Card.new(
 	0,
-	master_card_list[0]["cost"],
-	master_card_list[0]["name"]
+	0, #MasterCardList.master_card_list()[0]["cost"],
+	"d" #MasterCardList.master_card_list()["name"]
 )
 
 func _init(p_id: int, p_cost: int, p_name: String):
@@ -20,7 +20,7 @@ func _to_string() -> String:
 	
 # TODO: Create real type to represent card config
 static func by_id(id: int) -> Card:
-	var card_config = Card.master_card_list[id]
+	var card_config = MasterCardList.master_card_list()[id]
 	
 	match card_config["type"]:
 		CardType.ATTACK:
@@ -70,22 +70,3 @@ class UtilityCard extends Card:
 # K - Unique ID for card
 # V - Card data
 enum CardType { ATTACK, DEFENSE, UTILITY }
-static var master_card_list = {
-	0: {
-		"cost": 0,
-		"name": "Invalid Card"
-	},
-	1: {
-		"type": CardType.ATTACK,
-		"cost": 1,
-		"name": "Rock",
-		"damage": 10
-	},
-	2: {
-		"type": CardType.ATTACK,
-		"cost": 2,
-		"name": "Big Rock",
-		"damage": 20
-	}
-}
-
