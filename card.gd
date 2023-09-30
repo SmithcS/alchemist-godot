@@ -4,12 +4,6 @@ var id: int
 var cost: int
 var name: String
 
-static var INVALID_CARD: Card = Card.new(
-	0,
-	0, #MasterCardList.master_card_list()[0]["cost"],
-	"d" #MasterCardList.master_card_list()["name"]
-)
-
 func _init(p_id: int, p_cost: int, p_name: String):
 	id = p_id
 	cost = p_cost
@@ -23,14 +17,14 @@ static func by_id(id: int) -> Card:
 	var card_config = MasterCardList.master_card_list()[id]
 	
 	match card_config["type"]:
-		CardType.ATTACK:
+		MasterCardList.CardType.ATTACK:
 			return AttackCard.new(
 				id,
 				card_config["cost"],
 				card_config["name"],
 				card_config["damage"]
 			)
-		CardType.DEFENSE:
+		MasterCardList.CardType.DEFENSE:
 			return DefenseCard.new(
 				id,
 				card_config["cost"],
@@ -39,7 +33,7 @@ static func by_id(id: int) -> Card:
 			)
 		_:
 			assert(false)
-			return INVALID_CARD
+			return  Card.new(0, 0, "")
 	
 class AttackCard extends Card:
 	var damage: int
@@ -62,11 +56,3 @@ class UtilityCard extends Card:
 	# No clue what this will do yet 
 	var data: String
 	
-# TODO consider making this global (autoload singleton)
-# TODO store in json file, load from that
-# TODO if stored, validate card config json
-#
-# Format <K, V>:
-# K - Unique ID for card
-# V - Card data
-enum CardType { ATTACK, DEFENSE, UTILITY }

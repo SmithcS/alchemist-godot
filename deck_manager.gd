@@ -8,3 +8,4 @@ func _init():
 
 func _default_deck() -> Deck:
 	return Deck.new(_default_card_ids)
+

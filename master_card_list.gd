@@ -3,6 +3,8 @@ extends Node
 var _master_card_list_config_path: String = "res://master_card_list.json"
 var _master_card_list: Dictionary = {}
 
+enum CardType { ATTACK, DEFENSE, UTILITY }
+
 func master_card_list() -> Dictionary:
 	if _master_card_list.size() == 0:
 		_load_card_config()
@@ -25,7 +27,7 @@ func _format_card_config_json(config_json: Dictionary) -> Dictionary:
 	for id in config_json.keys():
 		formatted_config[int(id)] = config_json[id]
 		if formatted_config[int(id)].has("type"):
-			formatted_config[int(id)]["type"] = Card.CardType.get(formatted_config[int(id)]["type"])
+			formatted_config[int(id)]["type"] = CardType.get(formatted_config[int(id)]["type"])
 	
 	return formatted_config
 		
