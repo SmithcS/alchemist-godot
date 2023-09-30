@@ -47,8 +47,9 @@ func _physics_process(delta):
 
 	# This input will need to be created in the input map
 	if Input.is_action_pressed("move"):
-		var direction = (mouse_position - position).normalized()
-		velocity = (direction * speed)
+		var raw_direction = mouse_position - position
+		if raw_direction.length() > 10:
+			velocity = (raw_direction.normalized() * speed)
 
 	if velocity.x != 0:
 		$Sprite2D.flip_h = velocity.x < 0
