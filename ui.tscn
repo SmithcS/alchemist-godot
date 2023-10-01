@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://rsb2jjk4vynx"]
+
+[ext_resource type="Texture2D" uid="uid://c5rxwjk8ryp3p" path="res://16_sample_card.svg" id="1_aafpo"]
+
+[node name="UI" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Cards" type="HBoxContainer" parent="."]
+layout_direction = 3
+layout_mode = 2
+
+[node name="CardSlot1" type="MarginContainer" parent="Cards"]
+layout_mode = 2
+
+[node name="CardBackground" type="NinePatchRect" parent="Cards/CardSlot1"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("1_aafpo")
+
+[node name="CardName" type="Label" parent="Cards/CardSlot1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0901961, 0.756863, 0.933333, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.909804, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "Example Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CardSlot2" type="MarginContainer" parent="Cards"]
+layout_mode = 2
+
+[node name="CardBackground" type="NinePatchRect" parent="Cards/CardSlot2"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("1_aafpo")
+
+[node name="CardName" type="Label" parent="Cards/CardSlot2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0901961, 0.756863, 0.933333, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.909804, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "Example Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CardSlot3" type="MarginContainer" parent="Cards"]
+layout_mode = 2
+
+[node name="CardBackground" type="NinePatchRect" parent="Cards/CardSlot3"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("1_aafpo")
+
+[node name="CardName" type="Label" parent="Cards/CardSlot3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0901961, 0.756863, 0.933333, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.909804, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "Example Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
