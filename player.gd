@@ -4,41 +4,36 @@ extends CharacterBody2D
 @export var speed = 400
 @export var projectile_scene : PackedScene
 
-var card_manager = DeckManager.new()
+var deck_manager = DeckManager.new(2)
 
 var rock_texture = preload("res://16_rock.svg")
 var icicle_texture = preload("res://16_icicle.svg")
 var ice_rock_texture = preload("res://16_ice_rock.svg")
 
-var elementSet = {}
+signal card_cast
 
 func _ready():
-	print(card_manager.deck.to_string())
+	print(deck_manager.deck.to_string())
+	
 	
 func cast():
 	var projectile = projectile_scene.instantiate()
 	var projectile_sprite = projectile.get_node("Sprite2D")
 	
-	if elementSet.has("ice") and elementSet.has("rock"):
-		projectile_sprite.set_texture(ice_rock_texture)
-	elif elementSet.has("ice"):
-		projectile_sprite.set_texture(icicle_texture)
-	elif elementSet.has("rock"):
-		projectile_sprite.set_texture(rock_texture)
+	# if elementSet.has("ice") and elementSet.has("rock"):
+	#	projectile_sprite.set_texture(ice_rock_texture)
+	# elif elementSet.has("ice"):
+	#	projectile_sprite.set_texture(icicle_texture)
+	# elif elementSet.has("rock"):
+	#	projectile_sprite.set_texture(rock_texture)
 		
 	add_child(projectile)
 	
 	projectile.transform = $ProjectileSpawn.transform
 	#projectile.rotation = $ProjectileSpawn.rotation
-	elementSet.clear()
 		
 func _process(delta):
-	if Input.is_action_just_pressed("element1"):
-		elementSet["ice"] = true
-	if Input.is_action_just_pressed("element2"):
-		elementSet["rock"] = true
-	if Input.is_action_just_pressed("cast"):
-		cast()
+	pass
 	
 func _physics_process(delta):
 	# Reset the player's velocity
