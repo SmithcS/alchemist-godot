@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_aeivy"]
 [ext_resource type="PackedScene" uid="uid://rsb2jjk4vynx" path="res://ui.tscn" id="2_w3xy5"]
 [ext_resource type="PackedScene" uid="uid://o5t6x5w6g14l" path="res://player.tscn" id="3_54thu"]
-[ext_resource type="PackedScene" uid="uid://11xavil88wef" path="res://deck_manager.tscn" id="4_0ksra"]
+[ext_resource type="Script" path="res://ui.gd" id="4_lot5w"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_aeivy")
@@ -11,5 +11,6 @@ script = ExtResource("1_aeivy")
 [node name="Player" parent="." instance=ExtResource("3_54thu")]
 
 [node name="UI" parent="." instance=ExtResource("2_w3xy5")]
+script = ExtResource("4_lot5w")
 
-[node name="DeckManager" parent="." instance=ExtResource("4_0ksra")]
+[connection signal="ready" from="UI" to="." method="_on_ui_ready"]

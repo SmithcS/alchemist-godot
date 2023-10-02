@@ -20,12 +20,7 @@ func cast():
 	var projectile = projectile_scene.instantiate()
 	var projectile_sprite = projectile.get_node("Sprite2D")
 	
-	# if elementSet.has("ice") and elementSet.has("rock"):
-	#	projectile_sprite.set_texture(ice_rock_texture)
-	# elif elementSet.has("ice"):
-	#	projectile_sprite.set_texture(icicle_texture)
-	# elif elementSet.has("rock"):
-	#	projectile_sprite.set_texture(rock_texture)
+	projectile_sprite.set_texture(rock_texture)
 		
 	add_child(projectile)
 	

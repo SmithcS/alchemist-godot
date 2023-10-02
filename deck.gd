@@ -16,6 +16,9 @@ func _to_string() -> String:
 func add(card: Card):
 	cards.append(card)
 	
+func add_all(p_cards: Array[Card]):
+	cards.append(p_cards)
+	
 func combine(deck: Deck):
 	cards.append_array(deck.cards)
 	
@@ -36,3 +39,6 @@ func shuffle():
 	
 func clear():
 	cards = []
+	
+func is_empty() -> bool:
+	return cards.is_empty()
