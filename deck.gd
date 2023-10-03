@@ -14,13 +14,19 @@ func _to_string() -> String:
 	return str
 
 func add(card: Card):
+	print("cards: ", cards)
 	cards.append(card)
 	
 func add_all(p_cards: Array[Card]):
-	cards.append(p_cards)
+	print("cards: ", cards)
+	print("p_cards: ", p_cards)
+	cards.append_array(p_cards)
 	
-func combine(deck: Deck):
-	cards.append_array(deck.cards)
+func combine(p_deck: Deck):
+	print("cards: ", cards)
+	print("p_deck: ", p_deck.cards)
+	cards.append_array(p_deck.cards)
+	
 	
 func draw() -> Card:
 	var card = cards.back()
@@ -35,6 +41,7 @@ func draw() -> Card:
 	
 func shuffle():
 	randomize()
+	print(cards)
 	cards.shuffle()
 	
 func clear():

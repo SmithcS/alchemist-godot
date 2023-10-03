@@ -1,34 +1,15 @@
 extends CharacterBody2D
 
+class_name Player
+
 # How fast the player will move (pixels/sec)
 @export var speed = 400
 @export var projectile_scene : PackedScene
 
-var deck_manager = DeckManager.new(2)
-
-var rock_texture = preload("res://16_rock.svg")
-var icicle_texture = preload("res://16_icicle.svg")
-var ice_rock_texture = preload("res://16_ice_rock.svg")
-
-signal card_cast
+var cast_manager: CastManager
 
 func _ready():
-	print(deck_manager.deck.to_string())
-	
-	
-func cast():
-	var projectile = projectile_scene.instantiate()
-	var projectile_sprite = projectile.get_node("Sprite2D")
-	
-	projectile_sprite.set_texture(rock_texture)
-		
-	add_child(projectile)
-	
-	projectile.transform = $ProjectileSpawn.transform
-	#projectile.rotation = $ProjectileSpawn.rotation
-		
-func _process(delta):
-	pass
+	cast_manager = CastManager.new(self, $ProjectileSpawn)
 	
 func _physics_process(delta):
 	# Reset the player's velocity
