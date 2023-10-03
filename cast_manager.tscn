@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxkbad3qtob44"]
+
+[ext_resource type="Script" path="res://cast_manager.gd" id="1_irgwq"]
+
+[node name="CastManager" type="Node"]
+script = ExtResource("1_irgwq")
+
+[node name="CastCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="CastCooldown" to="." method="_on_cast_cooldown_timeout"]

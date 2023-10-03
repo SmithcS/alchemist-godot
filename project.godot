@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventBus="*res://event_bus.gd"
 MasterCardList="*res://master_card_list.gd"
+EventBus="*res://event_bus.gd"
 
 [display]
 
