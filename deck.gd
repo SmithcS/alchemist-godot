@@ -14,24 +14,19 @@ func _to_string() -> String:
 	return str
 
 func add(card: Card):
-	print("cards: ", cards)
 	cards.append(card)
 	
 func add_all(p_cards: Array[Card]):
-	print("cards: ", cards)
-	print("p_cards: ", p_cards)
 	cards.append_array(p_cards)
 	
 func combine(p_deck: Deck):
-	print("cards: ", cards)
-	print("p_deck: ", p_deck.cards)
 	cards.append_array(p_deck.cards)
-	
 	
 func draw() -> Card:
 	var card = cards.back()
 	
-	# This means the deck is empty, and we should reshuffle
+	# This means the deck is empty, and we should reshuffle. Currently asserts
+	# false because we shouldn't be drawing from empty decks
 	if card == null:
 		assert(false)
 		

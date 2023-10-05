@@ -6,20 +6,10 @@ class_name Player
 @export var speed = 400
 @export var projectile_scene : PackedScene
 
-func _ready():
-	var cast_manager = preload("res://cast_manager.tscn").instantiate()
-	
-	if (self is CharacterBody2D):
-		pass
-	else:
-		assert(false)
-		
-	print(cast_manager)
-	add_child(cast_manager)
-	# cast_manager.player = self
-	cast_manager.projectile_spawn = $ProjectileSpawn
-	#cast_manager.set_vars(self, $ProjectileSpawn)
+var cast_manager: CastManager
 
+func _ready():
+	_setup_cast_manaager()
 	
 func _physics_process(delta):
 	# Reset the player's velocity
@@ -43,3 +33,9 @@ func projectile_spawn_face_mouse(global_mouse_position: Vector2):
 	var direction: Vector2 = (global_mouse_position - $Sprite2D.global_position).normalized()
 	$ProjectileSpawn.position = direction * 15
 	$ProjectileSpawn.rotation = direction.angle()
+	
+func _setup_cast_manaager():
+	cast_manager = preload("res://cast_manager.tscn").instantiate()
+	cast_manager.configure(self, $ProjectileSpawn)
+	add_child(cast_manager)
+	
