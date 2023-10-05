@@ -1,9 +1,12 @@
 extends Node
 
-var deck_manager = DeckManager.new(2)
+@export var player_node_path: NodePath
 
-@onready var player: Player = $Player
+@onready var world := $World
+@onready var player: Player = get_node(player_node_path)
 @onready var ui := $UI
+
+var deck_manager = DeckManager.new(2)
 
 func _ready():
 	print("player deck: " + deck_manager.deck.to_string())
@@ -20,7 +23,5 @@ func _process(delta):
 			print("player deck: ", deck_manager.deck.to_string())
 			print("player discards: ", deck_manager.discards.to_string())
 			print("player hand: ", deck_manager.hand)
+
 			
-
-
-		
