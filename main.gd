@@ -10,6 +10,7 @@ var deck_manager = DeckManager.new(2)
 
 func _ready():
 	print("player deck: " + deck_manager.deck.to_string())
+	_create_chest()
 	deck_manager.draw_hand()
 
 func _process(delta):
@@ -24,4 +25,8 @@ func _process(delta):
 			print("player discards: ", deck_manager.discards.to_string())
 			print("player hand: ", deck_manager.hand)
 
-			
+func _create_chest():
+	var chest = preload("res://chest.tscn").instantiate()
+	chest.position.x = 300
+	chest.position.y = 100
+	world.add_child(chest)
