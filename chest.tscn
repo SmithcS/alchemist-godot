@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://da6eba2vy00v8"]
+[gd_scene load_steps=4 format=3 uid="uid://da6eba2vy00v8"]
 
 [ext_resource type="Script" path="res://chest.gd" id="1_m0o6d"]
 [ext_resource type="Texture2D" uid="uid://cqpv1ife6pjtu" path="res://16_chest.svg" id="2_g4sbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odubv"]
+size = Vector2(84, 54)
 
 [node name="Chest" type="Area2D"]
 script = ExtResource("1_m0o6d")
@@ -10,5 +13,8 @@ script = ExtResource("1_m0o6d")
 scale = Vector2(6, 6)
 texture = ExtResource("2_g4sbm")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-42, 6, -12, -6, 12, -6, 42, 6, 42, 48, -42, 48)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_odubv")
