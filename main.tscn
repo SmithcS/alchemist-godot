@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj2u3avfuo05f"]
+[gd_scene load_steps=7 format=3 uid="uid://bj2u3avfuo05f"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aeivy"]
 [ext_resource type="PackedScene" uid="uid://rsb2jjk4vynx" path="res://ui.tscn" id="2_w3xy5"]
 [ext_resource type="PackedScene" uid="uid://o5t6x5w6g14l" path="res://player.tscn" id="3_54thu"]
 [ext_resource type="Script" path="res://ui.gd" id="4_lot5w"]
 [ext_resource type="PackedScene" uid="uid://cfumvcqwrca6o" path="res://world.tscn" id="5_yjksa"]
+[ext_resource type="PackedScene" uid="uid://bglkwmdmh51ej" path="res://enemy.tscn" id="6_n16vh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_aeivy")
 player_node_path = NodePath("World/Player")
+enemy_scene = ExtResource("6_n16vh")
 
 [node name="UI" parent="." instance=ExtResource("2_w3xy5")]
 script = ExtResource("4_lot5w")

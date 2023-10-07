@@ -1,6 +1,7 @@
 extends Node
 
 @export var player_node_path: NodePath
+@export var enemy_scene: PackedScene
 
 @onready var world := $World
 @onready var player: Player = get_node(player_node_path)
@@ -11,6 +12,7 @@ var deck_manager = DeckManager.new(2)
 func _ready():
 	print("player deck: " + deck_manager.deck.to_string())
 	_create_chest()
+	_create_enemy()
 	deck_manager.draw_hand()
 
 func _process(delta):
@@ -30,3 +32,9 @@ func _create_chest():
 	chest.position.x = 300
 	chest.position.y = 100
 	world.add_child(chest)
+	
+func _create_enemy():
+	var enemy = enemy_scene.instantiate()
+	enemy.position.x = 500
+	enemy.position.y = 300
+	world.add_child(enemy)
