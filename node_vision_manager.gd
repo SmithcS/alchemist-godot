@@ -58,6 +58,8 @@ func get_collider() -> Array:
 	var collisions = rays.map(func(ray): return ray.get_collider())
 	return collisions.filter(func(obj): return obj != null)
 
+# Calculate number of rays to create based on the field of view such that an
+# object at least the size of the minimum blind spot value will always be seen.
 func _num_rays() -> int:
 	var circle_of_vision_circumference = sight_distance * (2 * PI)
 	var vision_arc_length = circle_of_vision_circumference * (fov / 360.0)

@@ -4,9 +4,6 @@ extends CharacterBody2D
 
 @export var speed: int = 200
 @export var sight_distance: int = 300
-@export var ray_cast_path: NodePath
-
-@onready var ray_cast_node: RayCast2D = get_node(ray_cast_path)
 
 var node_vision_manager: NodeVisionManager
 

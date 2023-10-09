@@ -1,16 +1,19 @@
 extends Node
 
 @export var player_node_path: NodePath
+@export var golem_node_path: NodePath
 @export var enemy_scene: PackedScene
 
 @onready var world := $World
 @onready var player: Player = get_node(player_node_path)
+@onready var golem: Golem = get_node(golem_node_path)
 @onready var ui := $UI
 
 var deck_manager = DeckManager.new(2)
 
 func _ready():
 	print("player deck: " + deck_manager.deck.to_string())
+	golem.set_home(player)
 	_create_chest()
 	_create_enemy()
 	deck_manager.draw_hand()
