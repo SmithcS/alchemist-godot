@@ -1,24 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bglkwmdmh51ej"]
+[gd_scene load_steps=3 format=3 uid="uid://bglkwmdmh51ej"]
 
 [ext_resource type="Texture2D" uid="uid://blsjjx7c3d1ia" path="res://16_monster_hand.svg" id="1_k3flh"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_pynb1"]
-[ext_resource type="Script" path="res://raycast.gd" id="3_fw2a6"]
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_pynb1")
-ray_cast_path = NodePath("RayCast2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(6, 6)
 texture = ExtResource("1_k3flh")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(-165, 0)
-script = ExtResource("3_fw2a6")
-line_2d_path = NodePath("Line2D")
-
-[node name="Line2D" type="Line2D" parent="RayCast2D"]
-points = PackedVector2Array(0, 0)
-width = 1.0
-begin_cap_mode = 2
-end_cap_mode = 2

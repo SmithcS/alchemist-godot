@@ -8,16 +8,20 @@ class_name Enemy
 
 @onready var ray_cast_node: RayCast2D = get_node(ray_cast_path)
 
+var node_vision_manager: NodeVisionManager
 signal player_sighted
 
 func _ready():
-	ray_cast_node.target_position.x = sight_distance
+	node_vision_manager = NodeVisionManager.new(self, sight_distance, 60)
+	#ray_cast_node.target_position.x = sight_distance
 	
 func _physics_process(delta):
-	if ray_cast_node.is_colliding():
-		if ray_cast_node.get_collider() is Player:
-			var target: Player = ray_cast_node.get_collider()
-			_sight_follow_target(target)
+	if node_vision_manager.is_colliding():
+		print("is colliding")
+		if node_vision_manager.get_collider() is Player:
+			var target: Player = node_vision_manager.get_collider() 
+			
+			node_vision_manager._align_with_target(target)
 			_move_follow_target(target)
 			
 func _move_follow_target(target: Node):
