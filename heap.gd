@@ -3,14 +3,16 @@ class_name Heap
 var _data: PackedInt32Array
 var _size: int
 var _tail: int
+var _comp: Callable
 
 const MIN_SIZE: int = 128
 
-func _init():
+func _init(comp: Callable = (func(x,y): return x <= y)):
     _tail = -1
     _size = MIN_SIZE
     _data = PackedInt32Array()
     _data.resize(_size)
+    _comp = comp
 
 func is_empty() -> bool:
     return _tail == -1
@@ -22,7 +24,7 @@ func deque() -> int:
     _tail = _tail - 1
     _swim_down(0)
     if 2*(_tail + 1) < _size and _size >= 2*MIN_SIZE:
-        # print("Resizing to %s" % str(_size/2))
+        # print("Resizing to %s" % str(_size/2))r
         _data.resize(_size/2)
     return outp
 
@@ -40,7 +42,7 @@ func enque(value: int):
 func _swim_up(index: int):
     while index != 0:
         var _parent_index: int = _get_parent(index)
-        if _data[index] < _data[_parent_index]:
+        if _comp.call(_data[index],_data[_parent_index]):
             _swap(index, _parent_index)
             index = _parent_index
         else:
@@ -56,7 +58,7 @@ func _swim_down(index: int):
             break
         elif _right_child_index > _tail:
             var _left_child_value: int = _data[_left_child_index]
-            if _left_child_value < _data[index]:
+            if _comp.call(_left_child_value, _data[index]):
                 _swap(index, _left_child_index)
                 index = _left_child_index
             else:
@@ -64,8 +66,8 @@ func _swim_down(index: int):
         else:
             var _left_child_value: int = _data[_left_child_index]
             var _right_node_value: int = _data[_right_child_index]
-            var _min_index: int = _left_child_index if _left_child_value <= _right_node_value else _right_child_index
-            if _data[_min_index] <= _data[index]:
+            var _min_index: int = _left_child_index if _comp.call(_left_child_value,_right_node_value) else _right_child_index
+            if _comp.call(_data[_min_index],_data[index]):
                 _swap(index, _min_index)
                 index = _min_index
             else:
