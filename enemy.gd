@@ -1,6 +1,6 @@
-extends CharacterBody2D
-
 class_name Enemy
+
+extends CharacterBody2D
 
 @export var speed: int = 200
 @export var sight_distance: int = 300
@@ -9,26 +9,34 @@ class_name Enemy
 @onready var ray_cast_node: RayCast2D = get_node(ray_cast_path)
 
 var node_vision_manager: NodeVisionManager
-signal player_sighted
 
 func _ready():
 	node_vision_manager = NodeVisionManager.new(self, sight_distance, 60)
 	
 func _physics_process(delta):
-	if node_vision_manager.is_colliding():
-		print("is colliding")
-		if node_vision_manager.get_collider() is Player:
-			var target: Player = node_vision_manager.get_collider() 
+	if _can_see_player():
+		var target := _get_seen_player()
+		print(target)
+		node_vision_manager.align_with_target(target)
+		_follow_target(target)
 			
-			node_vision_manager.align_with_target(target)
-			_move_follow_target(target)
-			
-func _move_follow_target(target: Node):
+func _follow_target(target: Node):
 	var direction: Vector2 = (target.position - position).normalized()
 	velocity = direction * speed
 	move_and_slide()
-	
-func _sight_follow_target(target: Node):
-	var direction: Vector2 = (target.position - position).normalized()
-	ray_cast_node.target_position = sight_distance * direction
 
+func _can_see_player() -> bool:
+	if node_vision_manager.is_colliding():
+		return (
+			node_vision_manager
+				.get_collider()
+				.any(func(obj): return obj is Player)
+		)
+	return false
+
+func _get_seen_player() -> Player:
+	var colliders := node_vision_manager.get_collider()
+	for collider in colliders:
+		if collider is Player:
+			return collider
+	return null

@@ -54,15 +54,9 @@ func align_with_target(target: Node):
 func is_colliding() -> bool:
 	return rays.any(func(ray: RayCast2D): return ray.is_colliding())
 
-func get_collider():
-	var colliders = rays.map(func(ray): return ray.get_collider())
-	
-	var f = null
-	for collider in colliders:
-		if (collider != null):
-			return collider
-		f = collider
-	return f
+func get_collider() -> Array:
+	var collisions = rays.map(func(ray): return ray.get_collider())
+	return collisions.filter(func(obj): return obj != null)
 
 func _num_rays() -> int:
 	var circle_of_vision_circumference = sight_distance * (2 * PI)
