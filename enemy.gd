@@ -13,7 +13,6 @@ signal player_sighted
 
 func _ready():
 	node_vision_manager = NodeVisionManager.new(self, sight_distance, 60)
-	#ray_cast_node.target_position.x = sight_distance
 	
 func _physics_process(delta):
 	if node_vision_manager.is_colliding():
@@ -21,7 +20,7 @@ func _physics_process(delta):
 		if node_vision_manager.get_collider() is Player:
 			var target: Player = node_vision_manager.get_collider() 
 			
-			node_vision_manager._align_with_target(target)
+			node_vision_manager.align_with_target(target)
 			_move_follow_target(target)
 			
 func _move_follow_target(target: Node):
