@@ -1,4 +1,3 @@
-#!/home/braeden/_godot/Godot_v4.1.1-stable_linux.x86_64 -S godot -s
 extends SceneTree
 
 const Heap = preload("res://heap.gd")
