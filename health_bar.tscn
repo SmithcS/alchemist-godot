@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwuu0xb5bjb7"]
+
+[ext_resource type="Script" path="res://HealthBar.gd" id="1_cdkq5"]
+[ext_resource type="Texture2D" uid="uid://5uwjgfmrypu" path="res://24x24_health_bar_under.svg" id="2_e7csi"]
+[ext_resource type="Texture2D" uid="uid://vlnnfm56vkfk" path="res://24x24_health_bar_over.svg" id="3_p36ak"]
+[ext_resource type="Texture2D" uid="uid://8uu87nbk4vdr" path="res://24x24_health_bar_fill.svg" id="4_f1nss"]
+
+[node name="HealthBar" type="CenterContainer"]
+offset_right = 200.0
+offset_bottom = 144.0
+script = ExtResource("1_cdkq5")
+texture_progress_bar_path = NodePath("TextureProgressBar")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(600, 96)
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 48
+stretch_margin_top = 48
+stretch_margin_right = 48
+stretch_margin_bottom = 48
+texture_under = ExtResource("2_e7csi")
+texture_over = ExtResource("3_p36ak")
+texture_progress = ExtResource("4_f1nss")
+
+[connection signal="update_health" from="." to="." method="_on_update_health"]

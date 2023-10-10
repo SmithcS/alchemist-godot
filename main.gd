@@ -11,6 +11,9 @@ extends Node
 
 var deck_manager = DeckManager.new(2)
 
+# temp
+var health = 100.0
+
 func _ready():
 	print("player deck: " + deck_manager.deck.to_string())
 	golem.set_home(player)
@@ -23,6 +26,9 @@ func _process(delta):
 		var cast_occured = player.cast_manager.cast()
 		
 		if cast_occured:
+
+			health = health - 10.0
+			ui.get_node("PlayerInfo/HealthBar").emit_signal("update_health", health)
 			deck_manager.discard_hand()
 			deck_manager.draw_hand()
 			

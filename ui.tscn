@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://rsb2jjk4vynx"]
+[gd_scene load_steps=3 format=3 uid="uid://rsb2jjk4vynx"]
 
+[ext_resource type="PackedScene" uid="uid://dwuu0xb5bjb7" path="res://health_bar.tscn" id="1_7wbww"]
 [ext_resource type="Texture2D" uid="uid://c5rxwjk8ryp3p" path="res://16_sample_card.svg" id="1_aafpo"]
 
 [node name="UI" type="MarginContainer"]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 136.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -74,3 +76,10 @@ text = "Example Card"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="PlayerInfo" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HealthBar" parent="PlayerInfo" instance=ExtResource("1_7wbww")]
+layout_mode = 2
